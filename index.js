@@ -1,13 +1,6 @@
-const express = require('express');
-const api = require('api');
+const sdk = require('api')('@render-api/v1.0#jw0325lr5hblce');
 
-const app = express();
-
-app.get('/', async (req, res) => {
-  const services = await api.listServices({
-    bearer: `Bearer rnd_BdvDklBymovzEJhB6KXTFIg6jd3B`,
-  });
-  res.send(services);
-});
-
-app.listen(3000);
+sdk.auth('rnd_BdvDklBymovzEJhB6KXTFIg6jd3B');
+sdk.getServices({limit: '20'})
+ .then(({ data }) => console.log(data))
+ .catch(err => console.error(err));
